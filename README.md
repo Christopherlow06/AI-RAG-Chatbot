@@ -4,7 +4,7 @@
 <div align="center">
 
 
-# AI-RAG-CHATBOT
+# SEW AI-RAG-CHATBOT
 
 <em>Empowering Smarter Conversations, Instantly and Seamlessly</em>
 
