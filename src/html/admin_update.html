@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/admin_update.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>SEW-EURODRIVE AI Chatbot</title>
+</head>
+<body>
+    <script src="../js/admin_update.js"></script>
+    <br>
+    <div class="header">
+        <button id="return" onclick="back()"><i class="fas fa-arrow-left"></i> Return</button>
+        <img src="../SEW_logo3.png" alt="SEW-EURODRIVE Logo" class="logo">
+    </div>
+    <div class="content">
+        <label for="old_qn">Old Question: </label><br>
+        <input type="text" id="old_qn" name="old_qn" required>
+        <br>
+        <label for="old_ans">Old Answer:</label><br>
+        <input type="text" id="old_ans" name="old_ans" required>
+        <br>
+        <label for="old_cat">Old Category:</label><br>
+        <select name="category" id="category">
+            <option value="Mechatronics">Mechatronics</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Ig">IG</option>
+        </select>
+        <br>
+
+        <label for="new_qn">New Question: </label><br>
+        <input type="text" id="new_qn" name="new_qn" required>
+        <br>
+        <label for="new_ans">New Answer:</label><br>
+        <input type="text" id="new_ans" name="new_ans" required>
+        <br>
+        <label for="new_cat">New Category:</label><br>
+        <select name="category" id="category">
+            <option value="Mechatronics">Mechatronics</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Ig">IG</option>
+        </select>
+        <br>
+    </div>
+</body>
+</html>

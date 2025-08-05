@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/admin_upsert.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>SEW-EURODRIVE AI Chatbot</title>
+</head>
+    <body>
+        <br>
+        <div class="header">
+            <button id="return" onclick="back()"><i class="fas fa-arrow-left"></i> Return</button>
+            <img src="../SEW_logo3.png" alt="SEW-EURODRIVE Logo" class="logo">
+        </div>
+        <input type="file" class="file" id="file" accept="application/pdf"><br>
+        <select name="category" id="category" class="searchable-dropdown">
+            <option value="Gearmotors">Gearmotors</option>
+            <option value="Gear units">Gear Units</option>
+            <option value="Motors">Motors</option>
+            <option value="Heavy industrial gearing">Heavy industrial gearing</option>
+            <option value="AC Drives">AC Drives</option>
+            <option value="Decentralized drive technology">Decentralized drive technology</option>
+            <option value="Linear drive technology">Linear drive technology</option>
+            <option value="Safety technology">Safety technology</option>
+            <option value="Control technology">Control technology</option>
+            <option value="Softwares">Software</option>
+        </select>
+        <button class="upload">Upload</button>
+        <div id="status" class="status"></div>
+        <script src="../js/admin_upsert.js" defer></script>
+    </body>
+</html>

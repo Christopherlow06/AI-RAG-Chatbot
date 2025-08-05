@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/chatbot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <title>SEW-EURODRIVE AI Chatbot</title>
+</head>
+
+<body>
+    <!-- Lightbox Image Modal -->
+    <div id="image-modal" class="image-modal">
+    <img class="modal-content" id="modal-img">
+    </div>
+
+    <nav id="sidebar">
+        <ul>
+            <img src="../SEW_logo3.png" alt="SEW-EURODRIVE Logo" class="logo">
+            <li class="active"><a href="chatbot.html"><i class="fa-solid fa-comment"></i><span> Chatbot</span></a></li>
+            <li><a href="index.html"><i class="fa-solid fa-ticket"></i><span> Ticket </span></a></li>
+            <li><a href="hist.html"><i class="fa-solid fa-clock-rotate-left"></i><span> History</span></a></li>
+            <li id="admin-menu"><a href="admin_login.html"><i class="fa-solid fa-user"></i><span> Admin</span></a></li>
+        </ul>
+    </nav>
+        <main>
+            <div id="chatbot-container">
+                <div id="chatbot-header">
+                    <span style="text-align:center">Chatbot</span>
+                </div>
+                <div id="chatbot-body">
+                    <div id="chatbot-messages"></div>
+                </div>
+                <div id="chatbot-select">
+                    <label for="category">Category:</label>
+                    <select id="category">
+                        <option value="Gearmotors">Gearmotors</option>
+                        <option value="Gear units">Gear Units</option>
+                        <option value="Motors">Motors</option>
+                        <option value="Heavy industrial gearing">Heavy industrial gearing</option>
+                        <option value="AC Drives">AC Drives</option>
+                        <option value="Decentralized drive technology">Decentralized drive technology</option>
+                        <option value="Linear drive technology">Linear drive technology</option>
+                        <option value="Safety technology">Safety technology</option>
+                        <option value="Control technology">Control technology</option>
+                        <option value="Softwares">Software</option>
+                    </select>
+                </div>
+                <div id="chatbot-input-container">
+                    <input type="text" id="chatbot-input" placeholder="Type a message">
+                    <button id="send-btn">Send</button>
+                </div>
+            </div>
+        </main>
+
+        <script src="../js/chatbot.js" defer></script>
+    </body>
+</html>

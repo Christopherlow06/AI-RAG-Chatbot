@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="../css/index.css">
+    <title>SEW-EURODRIVE</title>
+</head>
+<body>
+    <nav id="sidebar">
+        <ul>
+            <img src="../SEW_logo3.png" alt="SEW-EURODRIVE Logo" class="logo">
+            <li><a href="chatbot.html"><i class="fa-solid fa-comment"></i><span> Chatbot</span></a></li>
+            <li class="active"><a href="index.html"><i class="fa-solid fa-ticket"></i><span> Ticket </span></a></li>
+            <li><a href="hist.html"><i class="fa-solid fa-clock-rotate-left"></i><span> History</span></a></li>
+            <li id="admin-menu"><a href="admin_login.html"><i class="fa-solid fa-user"></i><span> Admin</span></a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="form-container">
+            <div class="left-column">
+                <h1>Create a Support Request</h1>
+                <div class="form-group">
+                    <label for="priority">I want to...</label>
+                    <select id="priority" name="priority">
+                        <option value=""></option>
+                        <option value="request">...submit a request</option>
+                        <option value="incident">...report an incident</option>
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label for="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject">
+                </div>
+    
+                <div class="text-group">
+                    <label for="description">Description:</label>
+
+                    <div class="font-size">
+                        <label for="fontsize">Size:</label>
+                        <select id="fontsize" onchange="changesize()">
+                            <option value="12px">1</option>
+                            <option value="18px">2</option> 
+                            <option value="24px">3</option>
+                            <option value="30px">4</option>
+                            <option value="36px">5</option>
+                            <option value="42px">6</option>
+                        </select>
+                    </div>
+                    <div class="rich-text-editor">
+                        <textarea id="description" name="description"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button class="submit-button">✔</button>
+            <button class="cancel-button">X</button>
+        </div>
+        <script src="../js/index.js" defer></script>
+    </main>
+</body>
+</html>

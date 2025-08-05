@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="../css/hist.css">
+    <script src="../js/hist.js" defer></script>
+    <title>SEW-EURODRIVE</title>
+</head>
+<body>
+    <nav id="sidebar">
+        <ul>
+            <img src="../SEW_logo3.png" alt="SEW-EURODRIVE Logo" class="logo">
+            <li><a href="chatbot.html"><i class="fa-solid fa-comment"></i><span> Chatbot</span></a></li>
+            <li><a href="index.html"><i class="fa-solid fa-ticket"></i><span> Ticket </span></a></li>
+            <li class="active"><a><i class="fa-solid fa-clock-rotate-left"></i><span> History</span></a></li>
+            <li id="admin-menu"><a href="admin_login.html"><i class="fa-solid fa-user"></i><span> Admin</span></a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="header">
+            <h2>Chat History</h2>
+        </div>
+        <div class="main-content">
+          <div class="search-wrapper">
+            <i class="uil uil-search"></i>
+            <input type="search" id="search" data-search>
+            <button id="refreshBtn"><i class="uil uil-redo icon-red"></i></button>
+          </div>
+          <div class="table-wrapper">
+              <table id="history-table" class="history-table table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th id="header-date">Date</th>
+                    <th id="header-qn">Question</th>
+                    <th id="header-ans">Answer</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            
+            <div id="modal" class="hidden">
+                <div id="modal-content">
+                  <span id="close">&times;</span>
+                  <h3>Full Question:</h3><br>
+                  <p id="full-question"></p><br>
+                  <h3>Full Answer:</h3><br>
+                  <p id="full-answer"></p>
+                </div>
+            </div>
+
+              <div id="modal-pic" class="hidden">
+                <div id="modal-content">
+                 <p id="full-pic"></p>
+                </div>
+            </div>
+
+            <div id="pagination-placeholder"></div>
+        </div>
+    </main>
+</body>
+</html>

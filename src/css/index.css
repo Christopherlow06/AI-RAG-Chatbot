@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root{
+    --base-clr: #11121a;
+    --line-clr: #42434a;
+    --hover-clr: #222533;
+    --text-clr: #e6e6ef;
+    --accent-clr: #5e63ff;
+    --secondary-text-clr: #b0b3c1;
+}
+
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box; /* Add box-sizing for consistent padding and border */
+}
+* {
+    user-select: none;
+  }
+  
+
+main {
+    padding: min(30px, 7%);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow:hidden;
+    color:#222;
+}
+
+main p{
+    color:var(--secondary-text-clr);
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.container{
+    border: 1px solid var(--line-clr);
+    border-radius: 1em;
+    margin-bottom: 20px;
+    padding: min(3em,15%);
+    width: min(90%, 1200px);
+    h2,p{ margin-top:1em}
+}
+
+html{
+    line-height: 1rem;
+}
+
+body{
+    background-color:#222;
+    color:var(--text-clr);
+    font-family: montserrat,sans-serif;
+    overflow-y: auto;
+    display:grid;
+    grid-template-columns: auto 1fr;
+}
+.logo {
+    padding-top:10px;
+    width: 150px;
+    height: auto;
+    margin-bottom: 30px;
+}
+span,i{
+    font-family: montserrat,sans-serif;
+    font-size: 15px;
+    font-weight:bold;
+}
+
+#sidebar{
+    box-sizing: border-box;
+    height:100vh;
+    width: max(250px, 30%);
+    padding:5px 1em;
+    border-right:1px solid var(--line-clr);
+    background-color: var(--base-clr);
+}
+#sidebar ul{
+    list-style:none;
+    padding: 0; 
+    margin: 0; 
+}
+#sidebar ul>li:first-child{
+    display:flex;
+    justify-content: flex-end;
+}
+#sidebar ul li.active a{
+    color: #b22222;
+}
+#sidebar a, #sidebar .dropdown-btn{
+    border-radius: .5em;
+    padding: .85em;
+    text-decoration: none;
+    color: var(--text-clr);
+    display: flex;
+    align-items: center;
+    gap:1em;
+}
+.dropdown-btn{
+    width:100%;
+    padding:0.75em;
+    text-align:left;
+    background: none;
+    font:inherit;
+    border:none;
+    cursor:pointer;
+}
+
+#admin-menu {
+  display: none;
+}
+
+.sub-menu {
+    padding-left: 0; /* Remove left padding to align with parent */
+    margin-top: 0.5em;
+}
+
+.sub-menu li {
+    margin: 6px 0; /* Consistent vertical spacing */
+    padding: 0; /* Remove default li padding */
+}
+
+.sub-menu li a {
+    display: block;
+    width: 100%;
+    padding: 0.75em 1em;
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--text-clr);
+    text-align: left;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+    box-sizing: border-box; /* Ensure border is included in the element's size */
+}
+
+#sidebar a span, #sidebar .dropdown-btn span{
+    flex-grow:1;
+}
+
+#sidebar a:hover, #sidebar .dropdown-btn:hover{
+    background-color: var(--hover-clr);
+    color:#E40011;
+}
+
+#sidebar .sub-menu{
+    display:grid;
+    grid-template-rows: 0fr;
+    transition:300ms ease-in-out;
+
+    > div{
+        overflow: hidden ; /*hide child elements that dont fit in the container*/
+    }
+}
+#sidebar .sub-menu.show{
+    grid-template-rows: 1fr;
+}
+
+.rotate .fa-solid.fa-angle-down{
+    rotate: 180deg;
+}
+.dropdown-btn .fa-solid.fa-angle-down{
+    transition: 200ms ease;
+}
+
+#sidebar .sub-menu{
+    padding-left: 2em;
+}
+
+
+
+/*---------------------------Main-------------------------------*/
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90%;
+    margin: 50px 0px 0px 100px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+
+
+h1, h2 {
+    color: #333;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height:auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.text-group {
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+.text-group label[for="description"] {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 100px;
+}
+.text-group label[for="fontsize"] {
+    color: #555;
+    margin-bottom: 100px;
+}
+.text-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+.text-group select{
+    width:45px;
+    text-align: center;
+}
+
+.font-size{
+    margin-top: 10px;
+    margin-bottom:5px;
+    display: flex-end;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.rich-text-editor {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.rich-text-editor textarea {
+    height: 260px;
+    padding: 8px;
+    border: none;
+    border-radius:3px;
+    box-sizing: border-box;
+    font-size: 16px;
+    resize: none;
+}
+
+.form-actions {
+    position: fixed;
+    bottom: 0px;
+    left: 250px; /* Match your sidebar width */
+    width: calc(100% - 250px); /* Avoid overlapping the sidebar */
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+
+.form-actions button {
+    width: 60px;
+    height:60px;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.form-actions .cancel-button {
+    background-color:#FF7518 ;
+    color: white;
+}
+
+.form-actions .cancel-button:hover {
+    background-color: #FF4433;
+}
+
+.form-actions .submit-button {
+    background-color: #0096FF;
+    color: white;
+}
+
+.form-actions .submit-button:hover {
+    background-color: #0047AB;
+}   
+

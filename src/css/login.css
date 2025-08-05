@@ -1,0 +1,88 @@
+body {
+    background-color: #222;
+    color: white;
+    font-family: montserrat, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure the content is centered vertically */
+    margin: 0; /* Remove default margin */
+}
+
+.logo {
+    width: 240px;
+    height: auto;
+    margin-bottom: 70px;
+}
+
+p {
+    font-family: montserrat, sans-serif;
+    font-size: 40px;
+}
+
+.label {
+    color: #E40011;
+    font-size: 30px;
+    font-family: montserrat, sans-serif;
+    font-weight: bold;
+}
+
+#id {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#password {
+    margin-top: 10px;
+}
+
+input[type="text"] {
+    width: 300px;
+    height: 38px;
+    font-size: 18px;
+}
+
+input[type="password"] {
+    width: 300px;
+    height: 38px;
+    font-size: 18px;
+}
+
+.login {
+    margin-top: 60px;
+    background-color: #b22222;
+    color: white;
+    font-family: montserrat, sans-serif;
+    font-size: 30px;
+    width: 310px;
+    height: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: 0.15s ease-in-out;
+    border-radius:8px;
+}
+
+.login:hover {
+    background-color: #E40011;
+}
+
+h1{
+    margin-top:-50px;
+}
+
+* {
+    user-select: none;
+}
+
+.error-message {
+    color: #b22222;
+    margin-top: 30px;
+    text-align: center;
+    min-height:20px;
+    visibility: hidden;
+}
+  

@@ -1,0 +1,275 @@
+
+
+function toggleSubMenu(button) {
+    button.nextElementSibling.classList.toggle("show");
+    button.classList.toggle("rotate");
+  }
+ 
+  function toggleActive(clickedButton) {
+    const buttons = document.querySelectorAll(".toggle-button");
+    buttons.forEach((button) => button.classList.remove("active"));
+    clickedButton.classList.add("active");
+  }
+
+const url = 'http://10.20.5.10:8080';
+ 
+  document.addEventListener("DOMContentLoaded", function () {
+    const sendBtn = document.getElementById("send-btn");
+    const chatbotInput = document.getElementById("chatbot-input");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+    const suggestionsList = document.getElementById("suggestions");
+    const dropdownArrow = document.getElementById("dropdown-arrow");
+    const searchboxinput = document.getElementById("searchbox")
+   
+      // Fetch categories from the proxy API and populate the dropdown
+    async function populateCategoryDropdown() {
+      try {
+        const response = await fetch("${url}/api/categories"); // <- goes through JSserver.js
+        if (!response.ok) throw new Error("Failed to fetch categories");
+
+        const data = await response.json();
+        const categories = data.categories;
+
+        const categorySelect = document.getElementById("category");
+        categorySelect.innerHTML = ""; // Clear existing options
+
+        categories.forEach(cat => {
+          const option = document.createElement("option");
+          option.value = cat;
+          option.textContent = cat.charAt(0).toUpperCase() + cat.slice(1); // optional formatting
+          categorySelect.appendChild(option);
+        });
+      } catch (err) {
+        console.error("Failed to load categories:", err);
+      }
+    }
+
+  // Call the function when DOM is ready
+  populateCategoryDropdown();
+
+    sendBtn.addEventListener("click", sendMessage);
+    chatbotInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+ 
+    async function sendMessage() {
+      const userMessage = chatbotInput.value.trim();
+      if (!userMessage) return;
+     
+      const currentCategory = document.getElementById("category").value;
+     
+      // Validate category selection
+      if (!currentCategory) {
+        appendMessage("bot", "Please select a category first.");
+        return;
+      }
+
+      appendMessage("user", userMessage);
+      chatbotInput.value = "";
+     
+      try {
+        // Check if this might be a PDF-specific query
+        const pdfs = await fetchPdfsByCategory(currentCategory);
+        const possiblePdfMatch = pdfs.find(pdf =>
+          userMessage.toLowerCase().includes(pdf.file_name.toLowerCase())
+        );
+
+        if (possiblePdfMatch) {
+          await processPdfQuery(possiblePdfMatch.file_name, userMessage);
+        } else {
+          await getBotResponse(userMessage);
+        }
+      } catch (error) {
+        console.error("Error processing message:", error);
+        appendMessage("bot", "Sorry, I encountered an error processing your request.");
+      }
+     
+      suggestionsList.classList.remove("visible");
+    }
+
+    async function processPdfQuery(fileName, originalQuery) {
+      const category = document.getElementById("category").value;
+     
+      try {
+        appendMessage("bot", "Processing PDF...");
+        const loadingElement = chatbotMessages.lastChild;
+
+        const response = await fetch("${url}/api/process_pdf_query", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: originalQuery,
+            category: category,
+            file_name: ""
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server responded with ${response.status}`);
+        }
+
+        const result = await response.json();
+        chatbotMessages.removeChild(loadingElement);
+
+        if (result.status === "success") {
+          appendMessage("bot", result.multimodal_response);
+         
+          if (result.colpali_image) {
+            const imgElement = document.createElement("img");
+            imgElement.src = `data:image/png;base64,${result.colpali_image}`;
+            imgElement.style.maxWidth = "100%";
+            imgElement.style.marginTop = "10px";
+            chatbotMessages.appendChild(imgElement);
+          }
+        } else {
+          appendMessage("bot", result.message || "Failed to process the PDF.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        appendMessage("bot", "Sorry, I encountered an error processing the PDF.");
+      }
+    }
+ 
+    function appendMessage(sender, message) {
+      const messageElement = document.createElement("div");
+      messageElement.classList.add("message", sender);
+      messageElement.textContent = message;
+      chatbotMessages.appendChild(messageElement);
+
+      // scroll the body
+      setTimeout(() => {
+        const body = document.getElementById("chatbot-body");
+        body.scrollTop = body.scrollHeight;
+      }, 50);
+    }
+
+   
+    async function getBotResponse(userMessage) {
+      const currentCategory = document.getElementById("category").value;
+     
+      try {
+        appendMessage("bot", "Processing...");
+        const loadingElement = chatbotMessages.lastChild;
+
+        const response = await fetch("${url}/api/process_pdf_query", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            query: userMessage,
+            category: currentCategory,
+            file_name: ""
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Server responded with ${response.status}`);
+        }
+
+        const result = await response.json();
+        chatbotMessages.removeChild(loadingElement);
+
+        if (result.status === "success") {
+          appendMessage("bot", result.multimodal_response);
+          if (result.colpali_image) {
+            const imgElement = document.createElement("img");
+            imgElement.src = `data:image/png;base64,${result.colpali_image}`;
+            imgElement.style.maxWidth = "100%";
+            imgElement.style.marginTop = "10px";
+            chatbotMessages.appendChild(imgElement);
+          }
+        } else {
+          appendMessage("bot", result.message || "I couldn't find a relevant answer in the documentation.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        appendMessage("bot", "Sorry, I encountered an error processing your question.");
+      }
+    }
+ 
+    let isWidthSet = false;
+ 
+    const categorySelect = document.getElementById("category");
+   
+    // Function to fetch PDFs based on selected category
+    async function fetchPdfsByCategory(category) {
+      try {
+        const response = await fetch(`http://localhost:3001/api/pdfs_from_category?category=${category}`);
+        if (!response.ok) throw new Error("Failed to fetch PDFs");
+        const data = await response.json();
+        return data.pdfs || [];
+      } catch (error) {
+        console.error("Error fetching PDFs:", error);
+        return [];
+      }
+    }
+   
+    // Function to populate suggestions with PDFs
+    async function populatePdfSuggestions(category) {
+      const pdfs = await fetchPdfsByCategory(category);
+     
+      suggestionsList.innerHTML = pdfs
+        .map(pdf => `<li onclick="selectPdf('${pdf.file_name}', '${pdf.sha256_hash}')">${pdf.file_name}</li>`)
+        .join("");
+     
+      if (pdfs.length > 0 && !isWidthSet) {
+        const maxWidth = Math.max(...Array.from(suggestionsList.children).map(li => li.offsetWidth)) + 32;
+        suggestionsList.style.width = `${maxWidth}px`;
+        isWidthSet = true;
+      }
+     
+      suggestionsList.classList.toggle("visible", pdfs.length > 0);
+    }
+   
+    // Handle category change
+    categorySelect.addEventListener("change", async (e) => {
+      const selectedCategory = e.target.value;
+      await populatePdfSuggestions(selectedCategory);
+    });
+
+    searchboxinput.addEventListener("input", async (e) => {
+      const searchTerm = e.target.value.trim().toLowerCase();
+      const currentCategory = categorySelect.value;
+      const pdfs = await fetchPdfsByCategory(currentCategory);    
+      const filtered = pdfs.filter(pdf =>
+        pdf.file_name.toLowerCase().includes(searchTerm))
+        .slice(0, 5); // Limit to 10 results    
+      suggestionsList.innerHTML = filtered
+        .map(pdf => `<li onclick="selectPdf('${pdf.file_name}', '${pdf.sha256_hash}')">${pdf.file_name}</li>`)
+        .join("");
+     
+      if (filtered.length > 0 && !isWidthSet) {
+        const maxWidth = Math.max(...Array.from(suggestionsList.children).map(li => li.offsetWidth)) + 32;
+        suggestionsList.style.width = `${maxWidth}px`;
+        isWidthSet = true;
+      }
+     
+      suggestionsList.classList.toggle("visible", filtered.length > 0);
+    });
+ 
+    window.toggleDropdown = async () => {
+      const isVisible = suggestionsList.classList.contains("visible");
+      if (!isVisible) {
+        const currentCategory = categorySelect.value;
+        await populatePdfSuggestions(currentCategory);
+      } else {
+        suggestionsList.classList.remove("visible");
+      }
+    };
+ 
+    window.selectPdf = (fileName, sha256Hash) => {
+      searchboxinput.value = `${fileName}`;
+      suggestionsList.classList.remove("visible");
+      isWidthSet = false;
+    };
+ 
+    document.addEventListener("click", (e) => {
+      if (!suggestionsList.contains(e.target) &&
+          !dropdownArrow.contains(e.target) &&
+          !searchboxinput.contains(e.target)) {
+        suggestionsList.classList.remove("visible");
+        isWidthSet = false;
+      }
+    })
+  });

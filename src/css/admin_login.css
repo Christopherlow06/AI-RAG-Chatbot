@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+main {
+    background-color: #222;
+    color: white;
+    font-family: montserrat, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure the content is centered vertically */
+    margin: 0; /* Remove default margin */
+}
+
+
+.logo {
+    width: 160px;
+    height: auto;
+}
+
+p {
+    font-family: montserrat, sans-serif;
+    font-size: 40px;
+}
+
+.label {
+    color: #E40011;
+    font-size: 35px;
+    font-family: montserrat, sans-serif;
+    font-weight: bold;
+    margin-bottom:20px;
+}
+
+#id {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#password {
+    margin-top: 20px;
+}
+
+.login {
+    margin-top: 40px;
+    background-color: #b22222;
+    color: white;
+    font-family: montserrat, sans-serif;
+    font-size: 30px;
+    width: 310px;
+    height: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: 0.15s ease-in-out;
+    border-radius: 8px;
+}
+
+.login:hover {
+    background-color: #E40011;
+}
+
+h1{
+    margin-top:10px;
+    margin-bottom: 50px;
+}
+
+input{
+    font-family: montserrat, sans-serif;
+    font-weight:bold;
+    width: 300px;
+    height: 50px;
+    font-size: 18px;
+}
+
+#message{
+    height:20px;
+    font-family: montserrat, sans-serif;
+    font-size: 30px;
+    font-weight:bold;
+}
+
+/*----------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root{
+    --base-clr: #11121a;
+    --line-clr: #42434a;
+    --hover-clr: #222533;
+    --text-clr: #e6e6ef;
+    --accent-clr: #5e63ff;
+    --secondary-text-clr: #b0b3c1;
+}
+
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box; /* Add box-sizing for consistent padding and border */
+}
+
+* {
+    user-select: none;
+  }
+  
+main{
+    padding:min(30px, 7%);
+}
+main p{
+    color:var(--secondary-text-clr);
+    margin-top: 5px;
+    margin-bottom: 15px;
+}
+.container{
+    border: 1px solid var(--line-clr);
+    border-radius: 1em;
+    margin-bottom: 20px;
+    padding: min(3em,15%);
+
+    h2,p{ margin-top:1em}
+}
+
+html{
+    line-height: 1rem;
+}
+
+body{
+    background-color: var(--base-clr);
+    color:var(--text-clr);
+    font-family: montserrat,sans-serif;
+    overflow-y: auto;
+    display:grid;
+    grid-template-columns: auto 1fr;
+}
+.logo {
+    padding-top: 10px;
+    width: 150px;
+    height: auto;
+    margin-bottom: 30px;
+}
+span,i{
+    font-family: montserrat,sans-serif;
+    font-size: 15px;
+    font-weight:bold;
+}
+
+#sidebar{
+    box-sizing: border-box;
+    height:100vh;
+    width: 250px;
+    padding:5px 1em;
+    border-right:1px solid var(--line-clr);
+    background-color: var(--base-clr);
+}
+#sidebar ul{
+    list-style:none;
+    padding: 0; 
+    margin: 0; 
+}
+#sidebar ul>li:first-child{
+    display:flex;
+    justify-content: flex-end;
+}
+#sidebar ul li.active a{
+    color: #b22222;
+}
+#sidebar a, #sidebar .dropdown-btn{
+    border-radius: .5em;
+    padding: .85em;
+    text-decoration: none;
+    color: var(--text-clr);
+    display: flex;
+    align-items: center;
+    gap:1em;
+}
+.dropdown-btn{
+    width:100%;
+    padding:0.75em;
+    text-align:left;
+    background: none;
+    font:inherit;
+    border:none;
+    cursor:pointer;
+}
+
+.sub-menu {
+    padding-left: 0; /* Remove left padding to align with parent */
+    margin-top: 0.5em;
+}
+
+.sub-menu li {
+    margin: 6px 0; /* Consistent vertical spacing */
+    padding: 0; /* Remove default li padding */
+}
+
+.sub-menu li a {
+    display: block;
+    width: 100%;
+    padding: 0.75em 1em;
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--text-clr);
+    text-align: left;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+    box-sizing: border-box; /* Ensure border is included in the element's size */
+}
+
+#sidebar a span, #sidebar .dropdown-btn span{
+    flex-grow:1;
+}
+
+#sidebar a:hover, #sidebar .dropdown-btn:hover{
+    background-color: var(--hover-clr);
+    color:#E40011;
+
+}
+
+#sidebar .sub-menu{
+    display:grid;
+    grid-template-rows: 0fr;
+    transition:300ms ease-in-out;
+
+    > div{
+        overflow: hidden ; /*hide child elements that dont fit in the container*/
+    }
+}
+#sidebar .sub-menu.show{
+    grid-template-rows: 1fr;
+}
+
+#sidebar .sub-menu{
+    padding-left: 2em;
+}

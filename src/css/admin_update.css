@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+    background-color: #222;
+    color: white;
+    font-family: montserrat, sans-serif;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure the content is centered vertically */
+    margin: 0; /* Remove default margin */
+}
+
+.header {
+    position: absolute; /* Position relative to the body */
+    top: 27px; /* Adjust this value to move the header up or down */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Offset by 50% to center perfectly */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Ensure it spans the full width of the page */
+    position:fixed;
+}
+
+#return {
+    background-color: grey;
+    color: black;
+    width: 120px;
+    height: 50px;
+    position: absolute;
+    top: 10px; /* Distance from the top */
+    left: 20px; /* Distance from the left */
+    font-weight:bold;
+    font-size: 20px;
+    cursor: pointer;
+    font-family: montserrat, sans-serif;
+}
+.return:hover{
+    background-color: rgb(87, 86, 86);
+}
+
+.logo {
+    width: 160px;
+    height: auto;
+}
+
+.upload {
+    margin-top: 60px;
+    background-color: #b22222;
+    color: white;
+    font-family: montserrat, sans-serif;
+    font-size: 30px;
+    width: 310px;
+    height: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: 0.15s ease-in-out;
+    border-radius: 8px;
+}
+.upload:hover{
+    background-color: #E40011;
+}
+
+.question {
+    width: 45rem;
+    height: 4rem;
+    border-radius:10px;
+    padding: 3px; 
+    text-align: left; /* Align text to left */
+    vertical-align: top; /* Align text to the top */
+    box-sizing: border-box;
+    resize: none; /* Prevent resizing if needed */
+    font-family: montserrat, sans-serif;
+    font-size:20px;
+}
+
+.answer{
+    width: 45rem;
+    height: 10rem;
+    border-radius:10px;
+    padding: 10px; 
+    text-align: left; /* Align text to left */
+    vertical-align: top; /* Align text to the top */
+    box-sizing: border-box;
+    resize: none; /* Prevent resizing if needed */
+    font-family: montserrat, sans-serif;
+    font-size:20px;
+}
+
+#category{
+    font-family: montserrat, sans-serif;
+    font-weight:100px;
+    font-size: 15px;
+    height:1.5rem;
+    text-align:center;
+    width:10.5rem;
+}
+
+.content{
+    margin-top: 160px;
+    height: 2000px; 
+    width:fit-content;
+    font-family: montserrat,sans-serif;
+    font-size: 20px;
+}
+
+label{
+    margin:50px 0px;
+}
+
+* {
+    user-select: none;
+  }
+  
